@@ -14,7 +14,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("assignment 12 running");
 });
-
+// listen the port
 app.listen(port, () => {
   console.log("mmh12", port);
 });
