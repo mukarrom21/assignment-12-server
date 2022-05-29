@@ -38,6 +38,14 @@ async function run() {
       const result = await productCollection.findOne(query);
       res.send(result);
     });
+    // Post api
+     // add new data to database (create)
+     app.post("/products", async (req, res) => {
+      const newProduct = req.body;
+      const result = await productCollection.insertOne(newProduct);
+      res.send(result);
+    });
+
   } finally {
   }
 }
