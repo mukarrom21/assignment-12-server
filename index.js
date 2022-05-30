@@ -51,6 +51,7 @@ async function run() {
       const newOrder = req.body;
       const result = await orderCollection.insertOne(newOrder);
       res.send(result);
+      // ----------------------
     });
   } finally {
   }
