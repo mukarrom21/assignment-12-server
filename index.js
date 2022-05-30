@@ -47,6 +47,10 @@ async function run() {
       res.send(result);
     });
     //Post Order information---------------------
+    app.get("/orders", async (req, res) => {
+      const products = await orderCollection.find().toArray();
+      res.send(products);
+    });
     app.post("/orders", async (req, res) => {
       const newOrder = req.body;
       const result = await orderCollection.insertOne(newOrder);
@@ -58,7 +62,7 @@ async function run() {
 }
 run().catch(console.dir);
 
-// Check in the browser http://localhost:5000
+// Check in the browser https://mmh12.herokuapp.com
 app.get("/", (req, res) => {
   res.send("assignment 12 running");
 });
