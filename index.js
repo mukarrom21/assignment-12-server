@@ -27,6 +27,7 @@ async function run() {
     await client.connect();
     const productCollection = client.db("assignment_12").collection("products");
     const orderCollection = client.db("assignment_12").collection("orders");
+    const reviewCollection = client.db("assignment_12").collection("reviews");
     // get api --------------------------
     app.get("/products", async (req, res) => {
       const products = await productCollection.find().toArray();
@@ -55,8 +56,16 @@ async function run() {
       const newOrder = req.body;
       const result = await orderCollection.insertOne(newOrder);
       res.send(result);
-      // ----------------------
     });
+// ---------- review api --------------
+    app.post("/reviews", async (req, res) => {
+      const newReviews = req.body;
+      const result = await reviewCollection.insertOne(newReviews);
+      res.send(result);
+    });
+
+
+    // ==========================
   } finally {
   }
 }
