@@ -26,7 +26,8 @@ async function run() {
   try {
     await client.connect();
     const productCollection = client.db("assignment_12").collection("products");
-    // get api
+    const orderCollection = client.db("assignment_12").collection("orders");
+    // get api --------------------------
     app.get("/products", async (req, res) => {
       const products = await productCollection.find().toArray();
       res.send(products);
@@ -39,13 +40,18 @@ async function run() {
       res.send(result);
     });
     // Post api
-     // add new data to database (create)
-     app.post("/products", async (req, res) => {
+    // add new data to database (create)
+    app.post("/products", async (req, res) => {
       const newProduct = req.body;
       const result = await productCollection.insertOne(newProduct);
       res.send(result);
     });
-
+    //Post Order information---------------------
+    app.post("/orders", async (req, res) => {
+      const newOrder = req.body;
+      const result = await orderCollection.insertOne(newOrder);
+      res.send(result);
+    });
   } finally {
   }
 }
